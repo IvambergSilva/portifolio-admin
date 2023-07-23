@@ -1,0 +1,94 @@
+@import '../../Styles/variables.scss';
+
+$height: 4rem;
+$font-size: 1.5rem;
+
+@mixin display-box($flexDirection: "") {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @if $flexDirection {
+        flex-direction: $flexDirection;
+    }
+}
+
+.loginContainer {
+    @include display-box(column);
+    gap: calc($height / 2);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    max-width: 75%;
+    margin: auto;
+
+    h2 {
+        text-align: center;
+        font-size: calc($font-size * 1.5);
+        font-weight: 600;
+    }
+
+    .loginInputs {
+        @include display-box(column);
+        width: 100%;
+        gap: 0.5rem;
+
+        label {
+            font-size: calc($font-size/1.25);
+            width: 100%;
+            height: 1.5rem;
+        }
+
+        div {
+            @include display-box;
+
+            width: 100%;
+            height: $height;
+
+            input {
+                width: 100%;
+                height: 100%;
+                border-radius: 1rem 0 0 1rem;
+                padding: 1rem 2rem;
+                outline: none;
+                border: 1px solid $color-gray;
+                border-right: none;
+            }
+
+            span {
+                @include display-box;
+                width: 5rem;
+                height: 100%;
+                border-radius: 0 1rem 1rem 0;
+                background: $color-light-gray;
+                border: 1px solid $color-gray;
+                color: $color-primary;
+                font-size: $font-size;
+            }
+
+            .loginEyePassword {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .loginButton {
+        width: 100%;
+        height: $height;
+        border: none;
+        color: $color-primary;
+        font-size: $font-size;
+        background: $color-tertiary;
+        cursor: not-allowed;
+        margin-top: 1.5rem;
+
+        &.colorSecondary {
+            background: $color-secondary;
+            cursor: pointer;
+        }
+    }
+}
