@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import Styles from './Login.module.scss'
+import Styles from './Login.module.scss';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -20,7 +20,7 @@ export default function Login() {
     async function handleLogin() {
         if (email !== '' || password !== '') {
             await signInWithEmailAndPassword(auth, email, password)
-                .then((value) => {
+                .then(() => {
                     toast.success('Seja bem vindo...', {
                         style: { fontSize: '2em' },
                         autoClose: 1000,
@@ -29,7 +29,7 @@ export default function Login() {
                     setEmail('')
                     setPassword('')
                 })
-                .catch((error) => {
+                .catch(() => {
                     toast.warn('Ocorreu um erro...', {
                         style: { fontSize: '2em' },
                         autoClose: 1000,
@@ -84,6 +84,6 @@ export default function Login() {
                 className={`${Styles.loginButton} ${email && password && Styles.colorSecondary}`}
                 onClick={() => handleLogin()}
             >Login</button>}
-        </div >
+        </div>
     )
 }

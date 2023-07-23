@@ -1,0 +1,10 @@
+@import '../../Styles/variables.scss';
+
+.menuContainer {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    text-transform: uppercase;
+    font-size: 1.6rem;
+}

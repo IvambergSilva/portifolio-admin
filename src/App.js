@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 export default function App() {
     return (
         <div>
-            <ToastContainer autoClose={2000}/>
+            <ToastContainer autoClose={1000}/>
             <RoutesApp />
         </div>
     )

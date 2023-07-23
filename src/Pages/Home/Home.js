@@ -1,13 +1,87 @@
-import React from "react";
-// import Menu from "../../Components/Menu";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-import './Home.module.scss'
+import Styles from './Home.module.scss'
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowsRotate, faEye, faFileCirclePlus, faFile } from "@fortawesome/free-solid-svg-icons";
+
+import { auth, db } from '../../Database/firebaseConnection'
+import { signOut } from 'firebase/auth'
+import { getDoc, doc } from "firebase/firestore";
+
+import ButtonPrimary from "../../Components/ButtonPrimary/ButtonPrimary";
+import Menu from "../../Components/Menu/Menu";
 
 export default function Home() {
+    const [imageUser, setImageUse] = useState('https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png')
+
+    const navigate = useNavigate()
+
+    async function getUserDetails() {
+        await getDoc(doc(db, "user", '0'))
+            .then((user) => {
+                setImageUse(user.data().image)
+            })
+    }
+
+    useEffect(() => {
+        getUserDetails()
+    }, [])
+
+    async function handleLogOut() {
+        await signOut(auth)
+        navigate("/")
+        toast.success('LogOut realizado com sucesso!', {
+            style: { fontSize: '2em' },
+        });
+    }
+
     return (
-        <div>
-            {/* <Menu /> */}
-            <p>Home</p>
+        <div className={Styles.homeContainer}>
+            <nav>
+                <div className={Styles.user}>
+                    <img src={imageUser} alt="oi" />
+                    <strong>Ivamberg Silva</strong>
+
+                    <ButtonPrimary
+                        onClick={() => handleLogOut()}
+                        title="LogOut"
+                    />
+                </div>
+                <ul>
+                    <li>
+                        <Menu
+                            onClick={() => navigate('/list')}
+                            title="Visualizar projetos"
+                            icon={<FontAwesomeIcon icon={faEye} />}
+                        />
+                    </li>
+
+                    <li>
+                        <Menu
+                            onClick={() => navigate('/main')}
+                            title="Adicionar projetos"
+                            icon={<FontAwesomeIcon icon={faFileCirclePlus} />}
+                        />
+                    </li>
+
+                    <li>
+                        <Menu
+                            title="Atualizar curriculo"
+                            icon={<FontAwesomeIcon icon={faArrowsRotate} />}
+                        />
+                    </li>
+
+                    <li>
+                        <Menu
+                            title="Editar biografia"
+                            icon={<FontAwesomeIcon icon={faFile} />}
+                        />
+                    </li>
+                </ul>
+            </nav>
         </div>
     )
 }

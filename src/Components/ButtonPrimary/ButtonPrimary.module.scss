@@ -1,0 +1,23 @@
+@import '../../Styles/variables.scss';
+
+$height: 4rem;
+$font-size: 1.5rem;
+
+.loginButton {
+    width: 90%;
+    height: $height;
+    border: none;
+    background: $color-tertiary;
+    cursor: not-allowed;
+    margin-top: 1.5rem;
+    border-radius: 1rem;
+
+    color: $text-color-primary;
+    font-size: $font-size;
+    font-weight: 600;
+
+    &.colorSecondary {
+        background: $color-secondary;
+        cursor: pointer;
+    }
+}

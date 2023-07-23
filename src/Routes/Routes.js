@@ -10,11 +10,11 @@ export default function RoutesApp() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Login />}></Route>
-                <Routes path="/home" element={
+                <Route path="/home" element={
                     <Private>
                         <Home />
                     </Private>
-                }></Routes>
+                }></Route>
             </Routes>
         </BrowserRouter>
     )

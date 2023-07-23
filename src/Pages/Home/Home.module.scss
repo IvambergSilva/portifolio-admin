@@ -1,5 +1,71 @@
-div{
-    display: flex;
-    flex-direction: column;
-    position: relative;
+@import '../../Styles/variables.scss';
+
+.homeContainer {
+    nav {
+        width: 100%;
+        margin: auto;
+        background: $color-primary;
+        height: 100vh;
+        color: $text-color-primary;
+        overflow-y: hidden;
+        position: absolute;
+        top: 0;
+
+        .user {
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 0 1rem $box-shadow;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+            gap: 2rem;
+            justify-content: space-between;
+
+            img {
+                width: 10rem;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+
+            strong {
+                font-size: 2rem;
+                font-weight: 700;
+            }
+
+            span {
+                font-size: 2rem;
+                cursor: pointer;
+            }
+        }
+
+        ul {
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            justify-content: center;
+            gap: 1.5rem;
+
+            li {
+                border-radius: 1rem 1rem 0 0;
+                height: 5rem;
+                list-style-type: none;
+                cursor: pointer;
+                padding: 1rem 2rem;
+                border-bottom: 1px solid $box-shadow;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                
+                &:hover {
+                    color: text-color-primary;
+                    background: $box-shadow;
+                }
+            }
+        }
+
+    }
 }
