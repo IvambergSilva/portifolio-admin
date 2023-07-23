@@ -40,7 +40,7 @@
             }
         }
 
-        ul {
+        .optionsHome {
             width: 90%;
             margin: auto;
             display: grid;
@@ -48,24 +48,6 @@
 
             justify-content: center;
             gap: 1.5rem;
-
-            li {
-                border-radius: 1rem 1rem 0 0;
-                height: 5rem;
-                list-style-type: none;
-                cursor: pointer;
-                padding: 1rem 2rem;
-                border-bottom: 1px solid $box-shadow;
-                display: flex;
-                justify-content: center;
-                text-align: center;
-                
-                &:hover {
-                    color: text-color-primary;
-                    background: $box-shadow;
-                }
-            }
         }
-
     }
 }

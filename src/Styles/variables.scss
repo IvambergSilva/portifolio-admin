@@ -16,7 +16,10 @@ $color-trash: #CF0E0E;
 
 $color-pen: #DFDE80;
 
-$color-check: #85BB65;
+:root {
+    --color-check: #85BB65;
+    --color-check-light: #84BB65C0;
+}
 
 $color-eye: #5F81E7;
 

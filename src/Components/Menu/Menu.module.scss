@@ -3,8 +3,20 @@
 .menuContainer {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
-
+    height: 5rem;
+    cursor: pointer;
+    border-bottom: 1px solid $box-shadow;
+    padding: 1rem 2rem;
+    border-radius: 1rem 1rem 0 0;
+    
     text-transform: uppercase;
     font-size: 1.6rem;
+    text-align: center;
+
+    &:hover {
+        color: text-color-primary;
+        background: $box-shadow;
+    }
 }

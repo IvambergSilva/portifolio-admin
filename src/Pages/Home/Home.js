@@ -17,25 +17,23 @@ import Menu from "../../Components/Menu/Menu";
 export default function Home() {
     const [imageUser, setImageUse] = useState('https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png')
 
-    const navigate = useNavigate()
-
     async function getUserDetails() {
         await getDoc(doc(db, "user", '0'))
-            .then((user) => {
-                setImageUse(user.data().image)
-            })
+        .then((user) => {
+            setImageUse(user.data().image)
+        })
     }
-
+    
     useEffect(() => {
         getUserDetails()
     }, [])
 
+    const navigate = useNavigate()
+
     async function handleLogOut() {
         await signOut(auth)
         navigate("/")
-        toast.success('LogOut realizado com sucesso!', {
-            style: { fontSize: '2em' },
-        });
+        toast.success('LogOut realizado com sucesso!', { style: { fontSize: '2em' } });
     }
 
     return (
@@ -50,37 +48,25 @@ export default function Home() {
                         title="LogOut"
                     />
                 </div>
-                <ul>
-                    <li>
-                        <Menu
-                            onClick={() => navigate('/list')}
-                            title="Visualizar projetos"
-                            icon={<FontAwesomeIcon icon={faEye} />}
-                        />
-                    </li>
+                <div className={Styles.optionsHome}>
+                    <Menu
+                        onClick={() => navigate('/list')}
+                        title="Visualizar projetos"
+                        icon={<FontAwesomeIcon icon={faEye} />}/>
 
-                    <li>
-                        <Menu
-                            onClick={() => navigate('/main')}
-                            title="Adicionar projetos"
-                            icon={<FontAwesomeIcon icon={faFileCirclePlus} />}
-                        />
-                    </li>
+                    <Menu
+                        onClick={() => navigate('/main')}
+                        title="Adicionar projetos"
+                        icon={<FontAwesomeIcon icon={faFileCirclePlus} />}/>
 
-                    <li>
-                        <Menu
-                            title="Atualizar curriculo"
-                            icon={<FontAwesomeIcon icon={faArrowsRotate} />}
-                        />
-                    </li>
+                    <Menu
+                        title="Atualizar curriculo"
+                        icon={<FontAwesomeIcon icon={faArrowsRotate} />}/>
 
-                    <li>
-                        <Menu
-                            title="Editar biografia"
-                            icon={<FontAwesomeIcon icon={faFile} />}
-                        />
-                    </li>
-                </ul>
+                    <Menu
+                        title="Editar biografia"
+                        icon={<FontAwesomeIcon icon={faFile} />}/>
+                </div>
             </nav>
         </div>
     )

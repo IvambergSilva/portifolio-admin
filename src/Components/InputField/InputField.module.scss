@@ -1,0 +1,40 @@
+@import '../../Styles/variables.scss';
+
+.inputContainer {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+
+    input,
+    textarea {
+        color: $text-color-primary;
+        padding: 1rem 2rem;
+        background: $box-shadow-light;
+        border: 1px solid $box-shadow;
+        border-radius: 0.5rem;
+        outline: none;
+    }
+
+    textarea {
+        max-height: 10rem;
+        max-width: 100%;
+
+        min-height: 10rem;
+        min-width: 100%;
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $color-primary;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $box-shadow;
+            border-radius: 0.5rem;
+        }
+    }
+}

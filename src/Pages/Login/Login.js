@@ -21,25 +21,16 @@ export default function Login() {
         if (email !== '' || password !== '') {
             await signInWithEmailAndPassword(auth, email, password)
                 .then(() => {
-                    toast.success('Seja bem vindo...', {
-                        style: { fontSize: '2em' },
-                        autoClose: 1000,
-                    });
+                    toast.success('Seja bem vindo...', { style: { fontSize: '2em' } });
                     navigate('/home', { replace: true })
                     setEmail('')
                     setPassword('')
                 })
                 .catch(() => {
-                    toast.warn('Ocorreu um erro...', {
-                        style: { fontSize: '2em' },
-                        autoClose: 1000,
-                    });
+                    toast.warn('Ocorreu um erro...', { style: { fontSize: '2em' } });
                 })
         } else {
-            toast.warn('Está faltando algo...', {
-                style: { fontSize: '2em' },
-                autoClose: 1000,
-            });
+            toast.warn('Está faltando algo...', { style: { fontSize: '2em' }});
         }
     }
 
