@@ -106,7 +106,7 @@ export default function ListProjects() {
                         <a href={project.link_repository} target="_blank" rel="noreferrer" ><FontAwesomeIcon icon={faLink} /></a>
                         <span>
                             <button
-                                onClick={() => navigate(`/home/${project.id}`)}><FontAwesomeIcon icon={faPen}
+                                onClick={() => navigate(`/update/${project.id}`)}><FontAwesomeIcon icon={faPen}
                                 /></button>
                             <button
                                 onClick={() => deleteProject(project.id)}><FontAwesomeIcon icon={faTrash}

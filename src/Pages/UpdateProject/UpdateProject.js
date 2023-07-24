@@ -1,70 +1,50 @@
-import React, { useCallback, useContext, useState } from "react";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import React, { useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../Database/firebaseConnection";
-import { doc, setDoc } from "firebase/firestore";
 
-import ButtonPrimary from "../../Components/ButtonPrimary/ButtonPrimary";
-
-import Styles from './NewProject.module.scss'
-import '../../Styles/variables.scss'
-import InputField from "../../Components/InputField/InputField";
 import Close from "../../Components/CloseButton/Close";
-import { AmountProjectContext } from "../../Context/Context";
+import ButtonPrimary from "../../Components/ButtonPrimary/ButtonPrimary";
+import InputField from "../../Components/InputField/InputField";
 
-export default function NewProject() {
+import Styles from './UpdateProject.module.scss'
+
+export default function UpdateProject() {
 
     const bgColorBtn = getComputedStyle(document.documentElement).getPropertyValue('--color-check');
     const bgColorBtnDisable = getComputedStyle(document.documentElement).getPropertyValue('--color-check-light');
 
     const [project, setProject] = useState({
-        id: '0',
-        title: '3',
-        description: '3',
-        link_repository: '4',
-        link_deploy: '5',
-        image: '6',
-        languages: ['Teste'],
-        observation: '7'
+        id: '',
+        title: '',
+        description: '',
+        link_repository: '',
+        link_deploy: '',
+        image: '',
+        languages: [],
+        observation: ''
     })
 
-    const [languages, setLanguages] = useState([])
-    const [inputLanguages, setInputLanguages] = useState('')
+    const { id } = useParams()
 
-    const addLanguages = useCallback(() => {
-        if (inputLanguages) {
-            setLanguages([...languages, inputLanguages])
+    async function getProject() {
+        await getDoc(doc(db, "projects", id))
+            .then((snapshot) => {
+                if (snapshot.data() !== undefined) {
+                    toast.success('Projeto obtido com sucesso!', { style: { fontSize: '2em' } });
 
-            setProject({ ...project, languages: [...languages, inputLanguages] })
-
-            setInputLanguages('')
-        }
-    }, [project, languages, inputLanguages])
-
-    function deleteLanguage(index) {
-        languages.splice(index, 1)
-        setLanguages(languages)
-        setProject({ ...project, languages: languages })
-    }
-
-    function addProject() {
-        if (project.id && project.title && project.description && project.image && project.link_deploy && project.link_repository && project.languages.length > 0) {
-            postProject()
-        }
-    }
-
-    async function postProject() {
-        await setDoc(doc(db, "projects", project.id), {
-            ...project
-        })
-            .then(() => {
-                toast.success('Projeto adicionado ao banco!', { style: { fontSize: '2em' } });
-                setAmountProject()
+                    setProject(snapshot.data())
+                    setLanguages(snapshot.data().languages)
+                } else {
+                    toast.warn('Falha ao obter o projeto!', { style: { fontSize: '2em' } });
+                }
             })
             .catch((error) => {
                 toast.warn('Verifique o console, pois ocorreu um erro!', { style: { fontSize: '2em' } });
@@ -72,13 +52,53 @@ export default function NewProject() {
             })
     }
 
-    const { amountProject, setAmountProject } = useContext(AmountProjectContext)
+    useEffect(() => {
+        getProject()
+    }, [])
+
+    const [languages, setLanguages] = useState([])
+
+    const [inputLanguages, setInputLanguages] = useState('')
+
+    function deleteLanguage(index) {
+        languages.splice(index, 1)
+        setLanguages(languages)
+        setProject({ ...project, languages: languages })
+    }
+
+    const addLanguages = useCallback(() => {
+        setLanguages([...languages, inputLanguages])
+
+        setProject({ ...project, languages: [...languages, inputLanguages] })
+
+        setInputLanguages('')
+
+    }, [project, languages, inputLanguages])
+
+    function updateProject() {
+        if (project.id && project.title && project.description && project.image && project.link_deploy && project.link_repository && project.languages.length > 0) {
+            putProject()
+        }
+    }
+
+    async function putProject() {
+        await updateDoc(doc(db, "projects", id), {
+            ...project
+        })
+            .then(() => {
+                toast.success('Projeto atualizado com sucesso!', { style: { fontSize: '2em' } });
+            })
+            .catch((error) => {
+                toast.warn('Verifique o console, pois ocorreu um erro!', { style: { fontSize: '2em' } });
+                console.log(`Error: ${error}`)
+            })
+    }
 
     return (
-        <div className={Styles.newProjectContainer}>
+        <div className={Styles.updateProjectContainer}>
             <Close />
 
-            <h2>Você já possui {amountProject} projetos em seu banco de dados!</h2>
+            <h1>{project.title}</h1>
 
             <InputField
                 label="ID:"
@@ -91,13 +111,6 @@ export default function NewProject() {
                 placeholder="Digite o título do projeto"
                 value={project.title}
                 onChange={(e) => setProject({ ...project, title: e.target.value })} />
-
-            <InputField
-                type="textarea"
-                label="Descrição do projeto:"
-                placeholder="Digite a descrição do projeto"
-                value={project.description}
-                onChange={(e) => setProject({ ...project, description: e.target.value })} />
 
             <InputField
                 label="Link do repositório:"
@@ -154,11 +167,11 @@ export default function NewProject() {
                 onChange={(e) => setProject({ ...project, observation: e.target.value })} />
 
             <ButtonPrimary
-                onClick={() => addProject()}
-                title="Adicionar projeto"
+                onClick={() => updateProject()}
+                title="Atualizar projeto"
                 bgColor={bgColorBtn}
                 enable="true"
             />
-        </div>
+        </div >
     )
 }

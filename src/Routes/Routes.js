@@ -7,6 +7,7 @@ import ListProjects from '../Pages/ListProjects/ListProjects'
 import NewProject from '../Pages/NewProject/NewProject'
 
 import Private from '../Private/Private'
+import UpdateProject from '../Pages/UpdateProject/UpdateProject'
 
 export default function RoutesApp() {
     return (
@@ -26,6 +27,11 @@ export default function RoutesApp() {
                 <Route path="/projects" element={
                     <Private>
                         <ListProjects />
+                    </Private>
+                }></Route>
+                <Route path="/update/:id" element={
+                    <Private>
+                        <UpdateProject />
                     </Private>
                 }></Route>
             </Routes>
