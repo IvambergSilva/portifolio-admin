@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Login from '../Pages/Login/Login'
 import Home from '../Pages/Home/Home'
+import ListProjects from '../Pages/ListProjects/ListProjects'
 
 import NewProject from '../Pages/NewProject/NewProject'
 
@@ -20,6 +21,11 @@ export default function RoutesApp() {
                 <Route path="/main" element={
                     <Private>
                         <NewProject />
+                    </Private>
+                }></Route>
+                <Route path="/projects" element={
+                    <Private>
+                        <ListProjects />
                     </Private>
                 }></Route>
             </Routes>

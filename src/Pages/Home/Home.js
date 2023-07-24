@@ -19,11 +19,11 @@ export default function Home() {
 
     async function getUserDetails() {
         await getDoc(doc(db, "user", '0'))
-        .then((user) => {
-            setImageUse(user.data().image)
-        })
+            .then((user) => {
+                setImageUse(user.data().image)
+            })
     }
-    
+
     useEffect(() => {
         getUserDetails()
     }, [])
@@ -46,26 +46,27 @@ export default function Home() {
                     <ButtonPrimary
                         onClick={() => handleLogOut()}
                         title="LogOut"
+                        width="50%"
                     />
                 </div>
                 <div className={Styles.optionsHome}>
                     <Menu
-                        onClick={() => navigate('/list')}
+                        onClick={() => navigate('/projects')}
                         title="Visualizar projetos"
-                        icon={<FontAwesomeIcon icon={faEye} />}/>
+                        icon={<FontAwesomeIcon icon={faEye} />} />
 
                     <Menu
                         onClick={() => navigate('/main')}
                         title="Adicionar projetos"
-                        icon={<FontAwesomeIcon icon={faFileCirclePlus} />}/>
+                        icon={<FontAwesomeIcon icon={faFileCirclePlus} />} />
 
                     <Menu
                         title="Atualizar curriculo"
-                        icon={<FontAwesomeIcon icon={faArrowsRotate} />}/>
+                        icon={<FontAwesomeIcon icon={faArrowsRotate} />} />
 
                     <Menu
                         title="Editar biografia"
-                        icon={<FontAwesomeIcon icon={faFile} />}/>
+                        icon={<FontAwesomeIcon icon={faFile} />} />
                 </div>
             </nav>
         </div>

@@ -1,24 +1,23 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useCallback, useContext, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import { db } from "../../Database/firebaseConnection";
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 import ButtonPrimary from "../../Components/ButtonPrimary/ButtonPrimary";
 
 import Styles from './NewProject.module.scss'
 import '../../Styles/variables.scss'
 import InputField from "../../Components/InputField/InputField";
+import Close from "../../Components/CloseButton/Close";
+import { AmountProjectContext } from "../../Context/Context";
 
 export default function NewProject() {
-
-    const navigate = useNavigate()
 
     const bgColorBtn = getComputedStyle(document.documentElement).getPropertyValue('--color-check');
     const bgColorBtnDisable = getComputedStyle(document.documentElement).getPropertyValue('--color-check-light');
@@ -65,7 +64,7 @@ export default function NewProject() {
         })
             .then(() => {
                 toast.success('Projeto adicionado ao banco!', { style: { fontSize: '2em' } });
-                getAmountProject()
+                setAmountProject()
             })
             .catch((error) => {
                 toast.warn('Verifique o console, pois ocorreu um erro!', { style: { fontSize: '2em' } });
@@ -73,30 +72,11 @@ export default function NewProject() {
             })
     }
 
-    const [amountProject, setAmountProject] = useState(0)
-
-    useEffect(() => {
-        getAmountProject()
-    }, [])
-
-    async function getAmountProject() {
-        let amountProject = 0
-        
-        const docs = collection(db, "projects")
-        await getDocs(docs)
-            .then((snapshot) => {
-                snapshot.forEach(() => amountProject += 1)
-            })
-            .catch((error) => {
-                console.log(`Error: ${error}`)
-            })
-
-        setAmountProject(amountProject)
-    }
+    const { amountProject, setAmountProject } = useContext(AmountProjectContext)
 
     return (
         <div className={Styles.newProjectContainer}>
-            <span className={Styles.iconClose} onClick={() => navigate('/home')}><FontAwesomeIcon icon={faClose} /></span>
+            <Close />
 
             <h2>Você já possui {amountProject} projetos em seu banco de dados!</h2>
 

@@ -1,0 +1,76 @@
+@import '../../Styles/variables.scss';
+
+.listProjectsContainer {
+    width: 100%;
+    padding: 1rem 2.5rem;
+
+    h2 {
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .listProjectHead,
+    .listProjectBody {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 0.6fr 1.2fr 1.2fr 1fr 1fr;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $box-shadow;
+
+        span, a {
+            padding: 1rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 1.2rem;
+            
+            &:nth-child(even), &:nth-child(1), &:nth-child(3){
+                overflow: hidden;
+            }
+        }
+        
+        a {
+            text-decoration: none;
+            color: $text-color-primary;
+            text-align: center;
+            cursor: pointer;
+        }
+    }
+
+    .listProjectHead {
+        span {
+            font-weight: 700;
+        
+            &:last-child {
+                text-align: center;
+            }
+        }
+    }
+
+    .listProjectBody {
+        &:nth-child(odd) {
+            background: $box-shadow-light;
+        }
+
+        span:last-child {
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+
+            button {
+                cursor: pointer;
+                background: none;
+                border: none;
+
+                &:first-child {
+                    color: $color-pen;
+                }
+
+                &:last-child {
+                    color: $color-trash;
+                }
+            }
+        }
+    }
+}
