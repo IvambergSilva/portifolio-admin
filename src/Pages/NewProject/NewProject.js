@@ -23,14 +23,14 @@ export default function NewProject() {
     const bgColorBtnDisable = getComputedStyle(document.documentElement).getPropertyValue('--color-check-light');
 
     const [project, setProject] = useState({
-        id: '0',
-        title: '3',
-        description: '3',
-        link_repository: '4',
-        link_deploy: '5',
-        image: '6',
-        languages: ['Teste'],
-        observation: '7'
+        id: '',
+        title: '',
+        description: '',
+        link_repository: '',
+        link_deploy: '',
+        image: '',
+        languages: [],
+        observation: ''
     })
 
     const [languages, setLanguages] = useState([])
@@ -78,7 +78,7 @@ export default function NewProject() {
         <div className={Styles.newProjectContainer}>
             <Close />
 
-            <h2>Você já possui {amountProject} projetos em seu banco de dados!</h2>
+            <h2>Você já possui {amountProject} { amountProject === 1 ? 'projeto' : 'projetos'} em seu banco de dados!</h2>
 
             <InputField
                 label="ID:"

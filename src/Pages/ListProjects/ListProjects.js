@@ -78,7 +78,7 @@ export default function ListProjects() {
 
             <Close />
 
-            <h2>Você já possui {amountProject} projetos em seu banco de dados!</h2>
+            <h2>Você já possui {amountProject} { amountProject === 1 ? 'projeto' : 'projetos'} em seu banco de dados!</h2>
 
             <ButtonPrimary
                 title="Adicionar projeto"
