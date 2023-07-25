@@ -15,12 +15,15 @@ import ButtonPrimary from "../../Components/ButtonPrimary/ButtonPrimary";
 import Menu from "../../Components/Menu/Menu";
 
 export default function Home() {
-    const [imageUser, setImageUse] = useState('https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png')
+    const [user, setUser] = useState({
+        name: '',
+        image: 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png'
+    })
 
     async function getUserDetails() {
         await getDoc(doc(db, "user", '0'))
             .then((user) => {
-                setImageUse(user.data().image)
+                setUser(user.data())
             })
     }
 
@@ -38,10 +41,10 @@ export default function Home() {
 
     return (
         <div className={Styles.homeContainer}>
-            <nav>
+            <nav className="nav">
                 <div className={Styles.user}>
-                    <img src={imageUser} alt="oi" />
-                    <strong>Ivamberg Silva</strong>
+                    <img src={ user.image } alt="Imagem do usuário" />
+                    <strong>{ user.name }</strong>
 
                     <ButtonPrimary
                         onClick={() => handleLogOut()}
