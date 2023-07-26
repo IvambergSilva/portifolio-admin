@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import Styles from './Home.module.scss'
+import './Home.scss';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate, faEye, faFileCirclePlus, faFile } from "@fortawesome/free-solid-svg-icons";
@@ -40,9 +40,9 @@ export default function Home() {
     }
 
     return (
-        <div className={Styles.homeContainer}>
-            <nav className="nav">
-                <div className={Styles.user}>
+        <div className="homeContainer">
+            <nav className="homeNav">
+                <div className="user">
                     <img src={ user.image } alt="Imagem do usuário" />
                     <strong>{ user.name }</strong>
 
@@ -52,7 +52,7 @@ export default function Home() {
                         width="50%"
                     />
                 </div>
-                <div className={Styles.optionsHome}>
+                <div className="optionsHome">
                     <Menu
                         onClick={() => navigate('/projects')}
                         title="Visualizar projetos"

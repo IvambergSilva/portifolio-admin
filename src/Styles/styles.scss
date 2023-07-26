@@ -18,3 +18,48 @@ body {
     background-color: $color-primary;
     color: $text-color-primary;
 }
+
+@media screen and (min-width: 1024px) {
+
+    .loginContainer,
+    .homeContainer,
+    .homeNav,
+    .newProjectContainer,
+    .updateProjectContainer,
+    .listProjectsContainer {
+        max-width: 40%;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .loginContainer,
+    .homeContainer,
+    .homeNav,
+    .newProjectContainer,
+    .updateProjectContainer,
+    .listProjectsContainer {
+        max-width: 55%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .loginContainer,
+    .homeContainer,
+    .homeNav,
+    .newProjectContainer,
+    .updateProjectContainer,
+    .listProjectsContainer {
+        max-width: 75%;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .loginContainer,
+    .homeContainer,
+    .homeNav,
+    .newProjectContainer,
+    .updateProjectContainer,
+    .listProjectsContainer {
+        max-width: 100%;
+    }
+}

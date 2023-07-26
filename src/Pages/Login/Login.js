@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import Styles from './Login.module.scss';
+import './Login.scss';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -35,9 +35,9 @@ export default function Login() {
     }
 
     return (
-        <div className={Styles.loginContainer}>
+        <div className="loginContainer">
             <h2>Vamos atualizar o seu <strong>PORTFÓLIO</strong>?</h2>
-            <div className={Styles.loginInputs}>
+            <div className="loginInputs">
                 <label>Email: </label>
                 <div>
                     <input
@@ -52,7 +52,7 @@ export default function Login() {
                 </div>
             </div>
 
-            <div className={Styles.loginInputs}>
+            <div className="loginInputs">
                 <label>Senha: </label>
                 <div>
                     <input
@@ -62,7 +62,7 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     ></input>
                     <span
-                        className={Styles.loginEyePassword}
+                        className="loginEyePassword"
                         onClick={() => setShowPassword(!showPassword)}
                     >
                         {showPassword ?
@@ -72,7 +72,7 @@ export default function Login() {
             </div>
 
             {<button
-                className={`${Styles.loginButton} ${email && password && Styles.colorSecondary}`}
+                className={`loginButton ${email && password ? 'colorSecondary' : ''}`}
                 onClick={() => handleLogin()}
             >Login</button>}
         </div>

@@ -15,7 +15,7 @@ import ButtonPrimary from "../../Components/ButtonPrimary/ButtonPrimary";
 
 import { AmountProjectContext } from "../../Context/Context";
 
-import Styles from './ListProjects.module.scss'
+import './ListProjects.scss'
 
 export default function ListProjects() {
 
@@ -49,10 +49,7 @@ export default function ListProjects() {
         await deleteDoc(projectRef)
             .then(() => {
                 toast.success('Projeto excluído do banco!', {
-                    style: {
-                        fontSize: '2em',
-                    },
-                    autoClose: 1000,
+                    style: { fontSize: '2em' },
                 });
                 setProjects(projects)
                 getProjects()
@@ -74,7 +71,7 @@ export default function ListProjects() {
     }, [])
 
     return (
-        <div className={Styles.listProjectsContainer}>
+        <div className="listProjectsContainer">
 
             <Close />
 
@@ -86,7 +83,7 @@ export default function ListProjects() {
                 onClick={() => navigate('/main')}
             />
 
-            <div className={Styles.listProjectHead}>
+            <div className="listProjectHead">
                 <span>ID</span>
                 <span>Título</span>
                 <span>Descrição</span>
@@ -97,7 +94,7 @@ export default function ListProjects() {
             {projects && projects.map((project) => {
                 return (
                     <div
-                        className={Styles.listProjectBody}
+                        className="listProjectBody"
                         key={project.id}
                     >
                         <span>{project.id}</span>

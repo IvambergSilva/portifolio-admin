@@ -14,7 +14,7 @@ import Close from "../../Components/CloseButton/Close";
 import ButtonPrimary from "../../Components/ButtonPrimary/ButtonPrimary";
 import InputField from "../../Components/InputField/InputField";
 
-import Styles from './UpdateProject.module.scss'
+import './UpdateProject.scss'
 
 export default function UpdateProject() {
 
@@ -95,7 +95,7 @@ export default function UpdateProject() {
     }
 
     return (
-        <div className={Styles.updateProjectContainer}>
+        <div className="updateProjectContainer">
             <Close />
 
             <h1>{project.title}</h1>
@@ -145,11 +145,11 @@ export default function UpdateProject() {
             />
 
             {languages.length > 0 ?
-                <div className={Styles.addedLanguages}>
+                <div className="addedLanguages">
                     <label>Linguagens: </label>
                     <ul>
                         {project.languages && project.languages.map((item, index) =>
-                            <li className={Styles.languages} key={index}>
+                            <li className="languages" key={index}>
                                 <h1>{item}</h1>
                                 <button onClick={() => deleteLanguage(index)}>
                                     <FontAwesomeIcon icon={faTrash} />

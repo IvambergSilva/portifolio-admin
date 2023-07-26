@@ -1,5 +1,7 @@
 import React, { useCallback, useContext, useState } from "react";
 
+import './NewProject.scss'
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,8 +13,6 @@ import { doc, setDoc } from "firebase/firestore";
 
 import ButtonPrimary from "../../Components/ButtonPrimary/ButtonPrimary";
 
-import Styles from './NewProject.module.scss'
-import '../../Styles/variables.scss'
 import InputField from "../../Components/InputField/InputField";
 import Close from "../../Components/CloseButton/Close";
 import { AmountProjectContext } from "../../Context/Context";
@@ -75,7 +75,7 @@ export default function NewProject() {
     const { amountProject, setAmountProject } = useContext(AmountProjectContext)
 
     return (
-        <div className={Styles.newProjectContainer}>
+        <div className="newProjectContainer">
             <Close />
 
             <h2>Você já possui {amountProject} { amountProject === 1 ? 'projeto' : 'projetos'} em seu banco de dados!</h2>
@@ -132,11 +132,11 @@ export default function NewProject() {
             />
 
             {languages.length > 0 ?
-                <div className={Styles.addedLanguages}>
+                <div className="addedLanguages">
                     <label>Linguagens: </label>
                     <ul>
                         {project.languages && project.languages.map((item, index) =>
-                            <li className={Styles.languages} key={index}>
+                            <li className="languages" key={index}>
                                 <h1>{item}</h1>
                                 <button onClick={() => deleteLanguage(index)}>
                                     <FontAwesomeIcon icon={faTrash} />
