@@ -114,6 +114,13 @@ export default function UpdateProject() {
                 onChange={(e) => setProject({ ...project, title: e.target.value })} />
 
             <InputField
+                type="textarea"
+                label="Descrição do projeto:"
+                placeholder="Digite a descrição do projeto"
+                value={project.description}
+                onChange={(e) => setProject({ ...project, description: e.target.value })} />
+
+            <InputField
                 label="Link do repositório:"
                 placeholder="Digite o link do repositório"
                 value={project.link_repository}
