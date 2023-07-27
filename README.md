@@ -15,7 +15,7 @@
 
 ## 🚀 Deploy
 
-<p>Segue o link com o deploy: <a href="" target="_blank">Clique aqui</a></p>
+<p>Segue o link com o deploy: <a href="https://portolio-admin-berg.netlify.app/" target="_blank">Clique aqui</a></p>
 
 ## 💻 Linguagens e Ferramentas
 
@@ -74,4 +74,3 @@ No diretório do projeto, você pode executar:
     </td>
   </tr>
 </table>
-
