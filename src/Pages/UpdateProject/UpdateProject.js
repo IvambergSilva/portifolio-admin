@@ -54,6 +54,7 @@ export default function UpdateProject() {
 
     useEffect(() => {
         getProject()
+        // eslint-disable-next-line
     }, [])
 
     const [languages, setLanguages] = useState([])
