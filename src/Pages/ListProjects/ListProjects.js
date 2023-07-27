@@ -68,7 +68,7 @@ export default function ListProjects() {
 
     useEffect(() => {
         getProjects()
-    }, [])
+    }, [getProjects])
 
     return (
         <div className="listProjectsContainer">

@@ -24,6 +24,7 @@ export default function Private({ children }) {
             })
         }
         checkLogin()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if(isLoading) return ( <div></div> )
