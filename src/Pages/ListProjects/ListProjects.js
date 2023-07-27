@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useCallback, useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
@@ -22,25 +22,24 @@ export default function ListProjects() {
     const navigate = useNavigate()
     const [projects, setProjects] = useState([])
 
-    async function getProjects() {
-        const projectsRef = collection(db, "projects")
-
-        await getDocs(projectsRef)
-            .then((snapshot) => {
-                let projectList = []
-                snapshot.forEach((project) => {
-                    projectList.push({
-                        id: project.id,
-                        ...project.data()
-                    })
-                })
-                setProjects(projectList)
-            })
-            .catch((error) => {
-                toast.warn('Verifique o console, pois ocorreu um erro!', { style: { fontSize: '2em' } });
-                console.log(`Error: ${error}`)
-            })
-    }
+    const getProjects = useCallback(async () => {
+        const projectsRef = collection(db, "projects");
+    
+        try {
+          const snapshot = await getDocs(projectsRef);
+          let projectList = [];
+          snapshot.forEach((project) => {
+            projectList.push({
+              id: project.id,
+              ...project.data()
+            });
+          });
+          setProjects(projectList);
+        } catch (error) {
+          toast.warn('Verifique o console, pois ocorreu um erro!', { style: { fontSize: '2em' } });
+          console.log(`Error: ${error}`);
+        }
+      }, []);
 
     const { amountProject, setAmountProject } = useContext(AmountProjectContext)
 
