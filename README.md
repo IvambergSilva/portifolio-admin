@@ -1,8 +1,8 @@
 ## Administrador do Portfólio
 
-![GitHub repo size](https://img.shields.io/github/repo-size/IvambergSilva/angular-weatherForecast?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/IvambergSilva/angular-weatherForecast?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/IvambergSilva/angular-weatherForecast?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/IvambergSilva/portifolio-admin?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/IvambergSilva/portifolio-admin?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/IvambergSilva/IvambergSilva/portifolio-admin?style=for-the-badge)
 
 <!--<img src="" alt="Exemplo de imagem">-->
 
